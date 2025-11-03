@@ -7,7 +7,9 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -21,12 +23,14 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import tw.edu.pu.csim.lin.mole.ui.theme.MoleTheme
 
@@ -61,7 +65,16 @@ fun MoleScreen(moleViewModel: MoleViewModel = viewModel()) {
             moleViewModel.getArea(intSize, moleSizePx) },
         Alignment.Center
     ) {
-        Text("分數: $counter \n時間: $stay")
+        Text("打地鼠遊戲(林建宇)\n分數: $counter \n時間: $stay")
+        if (stay >= 60) {
+            Spacer(modifier = Modifier.height(8.dp))
+            Text(
+                text = "遊戲結束！",
+                fontSize = 24.sp, // 假設您已引入相關單位
+                color = Color.Red, // 假設您已引入相關顏色
+                modifier = Modifier.align(Alignment.Center)
+            )
+        }
     }
 
     Image(
